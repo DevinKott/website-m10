@@ -1,8 +1,12 @@
 import React from "react";
 
-function PageTitle(props: any) {
-    const title: string | undefined = props.title as string || "";
-
+function PageTitle(
+    {
+        title
+    }: {
+        title: string
+    }
+) {
     return (
         <div className="text-3xl mb-4 font-semibold">{title}</div>
     );

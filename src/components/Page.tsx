@@ -1,8 +1,12 @@
 import React from "react";
 
-function Page(props: any) {
-    const title: string | undefined = props.title as string || "";
-
+function Page(
+    {
+        title
+    }: {
+        title: string
+    }
+) {
     return (
         <section
             className="mt-4"
