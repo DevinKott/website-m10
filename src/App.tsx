@@ -26,7 +26,7 @@ function App() {
                 id="page-header"
                 className="flex flex-row justify-between p-10 border-b-2 border-neutral-100"
             >
-                <span className="text-xl">devinkott.com</span>
+                <span className="text-xl"><b>devinkott</b>.com</span>
                 <nav className="text-lg">
                     <NavButton
                         title={"home"}

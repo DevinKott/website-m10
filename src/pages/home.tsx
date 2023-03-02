@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PageTitle from "../components/PageTitle";
 
 function Home() {
+    const [showFade, setShowFade] = useState<boolean>(false);
+    const DURATION = 100;
+
+    useEffect(
+        () => {
+            setTimeout(
+                () => {
+                    setShowFade(true);
+                },
+                50
+            );
+        },
+        []
+    );
+
     return (
-        <section className="mt-4">
+        <section
+            className={`mt-4 transition-opacity ease-in duration-${DURATION} opacity-${showFade ? "100" : "0"}`}
+        >
             <PageTitle title={"Hi there!"}/>
-            <p>
-                My name is Devin, and I&apos;m a 25-year-old software developer from Colorado.
+            <p className="mb-4">
+                My name is Devin, and I&apos;m a 25-year-old software developer currently living in Colorado.
             </p>
             <p>
                 I work as a software development engineer at Kodak Alaris, specializing in backend services.
