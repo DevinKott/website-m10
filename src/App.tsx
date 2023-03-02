@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import NavButton from "./components/NavButton";
+import Page from "./components/Page";
+import Education from "./pages/education";
+import Home from "./pages/home";
 
 function App() {
+    const [page, setPage] = useState(1);
+
+    const updatePage = (idx: number) => {
+        if (!(idx >= 1 && idx <= 4)) {
+            console.error(`Cannot set page to unknown page ID: ${idx}`);
+            return;
+        }
+
+        setPage(idx);
+    };
+
     return (
         <div
             id="page-container"
@@ -9,40 +24,46 @@ function App() {
         >
             <div
                 id="page-header"
-                className="text-3xl flex flex-row justify-around p-10"
+                className="flex flex-row justify-between p-10 border-b-2 border-neutral-100"
             >
-                <span>
-                    Devin Kott
-                </span>
-                <span>
-                    Colorado, US
-                </span>
+                <span className="text-xl">devinkott.com</span>
+                <nav className="text-lg">
+                    <NavButton
+                        title={"home"}
+                        pageID={1}
+                        updatePage={updatePage}
+                        selected={page === 1}
+                    />
+                    <NavButton
+                        title={"education"}
+                        pageID={2}
+                        updatePage={updatePage}
+                        selected={page === 2}
+                    />
+                    <NavButton
+                        title={"work"}
+                        pageID={3}
+                        updatePage={updatePage}
+                        selected={page === 3}
+                    />
+                    <NavButton
+                        title={"more"}
+                        pageID={4}
+                        updatePage={updatePage}
+                        selected={page === 4}
+                    />
+                </nav>
             </div>
             <div
                 id="page-body"
                 className="leading-relaxed px-10"
             >
-                <section className="my-4">
-                    <span className="text-lg">
-                        Brief Description
-                    </span>
-                    <p className="pl-2">
-                        I work as a software development engineer at Kodak Alaris, specializing in backend services.
-                        I&apos;m passionate about writing clean, reusable, and efficient code that&apos;s resilient and secure, ensuring that our products deliver optimal performance.
-                        My education at RIT has taught me the significance of creating strong and safe code, and I&apos;m continuously learning new technologies to incorporate the latest advancements into our products.
-                    </p>
-                </section>
-                <section className="my-4">
-                    <span className="text-lg">
-                        Education
-                    </span>
-                    <p className="pl-2">
-                        M.S./B.S. in Computer Science, Rochester Institute of Technology
-                    </p>
-                    <p className="pl-2">
-                        Graduate GPA: 4.00, Undergraduate GPA: 3.71, Aug 2016 - May 2021
-                    </p>
-                </section>
+                {
+                    page === 1 && <Home/>
+                }
+                {
+                    page === 2 && <Education/>
+                }
             </div>
         </div>
     );
